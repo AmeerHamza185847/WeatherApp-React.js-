@@ -11,6 +11,11 @@ export const Weather = () => {
 
 
     let getWeather = async (cityName) => {
+        cityName = cityName.trim();
+        if(cityName === ""){
+            alert("Write City Name here..")
+        }
+        else{
 
         try {
             const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY}`);
@@ -25,6 +30,7 @@ export const Weather = () => {
             setCityName("");
         }
     }
+    }
 
     let handleSubmit = (e) => {
         e.preventDefault();
@@ -32,7 +38,7 @@ export const Weather = () => {
     }
 
     return (
-        <div>
+        <div className='mainWrapper'>
             <form onSubmit={handleSubmit} className='weatherForm'>
                 <p className='inputPara'>
                     <input
@@ -56,23 +62,22 @@ export const Weather = () => {
             <br />
 
             {errorData && <p className='errorMsg'>{errorData}</p>}
-            {weatherData && <div className='weatherDataWrapper'>
-                <h4>{weatherData.data.name}</h4>
-                <div>
-                <span>Clouds : {weatherData.data.weather[0].description}</span>
-                <span className='imgSpan'><img 
-                className='weatherIcon'
-                src={`http://openweathermap.org/img/wn/${weatherData.data.weather[0].icon}@2x.png`} alt="WeatherIcon"
-                /></span>
+            {
+                weatherData && <div className='weatherDataWrapper'>
+                    <h4>{weatherData.data.name}</h4>
+                    <div>
+                        <span>Clouds : {weatherData.data.weather[0].description}</span>
+                        <span className='imgSpan'><img
+                            className='weatherIcon'
+                            src={`http://openweathermap.org/img/wn/${weatherData.data.weather[0].icon}@2x.png`} alt="WeatherIcon"
+                        />
+                        </span>
+                    </div>
+                    <h3>MaxTemp : {Math.floor((weatherData.data.main.temp_max) - 273.15)} °C</h3>
+                    <h3>MinTemp : {Math.floor((weatherData.data.main.temp_min) - 273.15)} °C</h3>
+                    <h5>Humidity : {weatherData.data.main.humidity} %</h5>
                 </div>
-                <h3>MaxTemp : {Math.floor((weatherData.data.main.temp_max)-273.15)} °C</h3>
-                <h3>MinTemp : {Math.floor((weatherData.data.main.temp_min)-273.15)} °C</h3>
-                <h5>Humidity : {weatherData.data.main.humidity} %</h5>
-            </div>}
+            }
         </div>
     )
 }
-
-// const styles = {
-
-// }

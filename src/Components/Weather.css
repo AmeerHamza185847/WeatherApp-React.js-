@@ -4,16 +4,20 @@
     box-sizing: border-box;
 }
 
+body{
+    background-color: rgb(157 177 214);
+}
+
 .weatherForm{
     width: 500px;
     margin: auto;
-    margin-top: 0.4em;
+    margin-top: 1em;
     display: flex;
     gap: 0.6em;
 }
 
 .weatherForm .inputPara{
-    width: 85%;
+    width: 81%;
 }
 
 .weatherForm .inputPara input{
@@ -21,21 +25,26 @@
     height: 8vh;
     padding-left: 0.5em;
     font-size: 1.1rem;
+    border: 1px solid brown;
+    border-radius: 1em;
 }
 
 .weatherForm .inputPara input:focus{
     outline: 1px solid black;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
 }
 
 .weatherForm .btnPara{
-    width: 15%;
+    width: 19%;
 }
 
 .weatherForm .btnPara button{
     width: 100%;
     height: 8vh;
+    font-weight: 600;
     cursor: pointer;
+    border: 1px solid brown;
+    border-radius: 1em;
 }
 
 .errorMsg{
@@ -49,6 +58,18 @@
     flex-direction: column;
     align-items: center;
     gap: 1em;
+    background-color: rgb(124 126 128);
+    width: 300px;
+    min-height: 200px;
+    padding: 12px;
+    margin: auto;
+    border-radius: 1em;
+    transition: 0.6s;
+    color: white;
+}
+
+.weatherDataWrapper:hover{
+    transform: scale(1.04);
 }
 
 .imgSpan{
